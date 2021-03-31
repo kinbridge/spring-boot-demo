@@ -18,6 +18,17 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+
+        <!--第四节-->
+        <!--使用 Thymeleaf 布局-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+        </dependency>
         <!--第三节-->
         <!--集成redis-->
         <dependency>

@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Author:   kinbridge
@@ -13,7 +14,7 @@ import javax.persistence.Id;
  * Description: Entity 中不映射成列的字段得加 @Transient 注解，不加注解也会映射成列
  */
 @Entity
-public class User {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

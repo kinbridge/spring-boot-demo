@@ -19,6 +19,11 @@
     </properties>
     <dependencies>
 
+        <!--第八节 集成rabbitMq -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
         <!--第四节-->
         <!--使用 Thymeleaf 布局-->
         <dependency>

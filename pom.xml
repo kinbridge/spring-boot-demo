@@ -19,6 +19,12 @@
     </properties>
     <dependencies>
 
+        <!--集成定时任务-->
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
         <!--第八节 集成rabbitMq -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

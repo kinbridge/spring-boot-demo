@@ -1,0 +1,12 @@
+- hosts: test
+  task:
+    - include:common/playbook.before.yml
+    - include:common/playbook.rum.yml
+  vars:
+    USER: test
+    GROUP: test
+    APP_HOME: /u/app/test
+    BACK_HOME: /u/app/backup/test
+    SERVER_PORT: 8081
+    backup_keep: 5
+    app_tarball: ./repos/test.jar.gz

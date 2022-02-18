@@ -1,0 +1,22 @@
+---
+- name: start
+  become: true
+  become_user: "{{ USER }}"
+  shell: nohup bin/start.sh &
+  args:
+    chdir: "{{APP_HOME}}"
+- name: check log
+  shell: tail -n 100 {{APP_HOME}}/log/*.log
+  register: result
+  igore_errors: yes
+- name: show debug yes
+  debug: var=result verbosity=0
+- name: Check debug info
+  wait_for:
+    host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+    port: "{{SERVER_PORT |init }}"
+    state: started
+    delay: 10
+    # timeout 一定要比上面的delay 值大，否则检查结果不正确
+    timeout: 150
+    connect_timeout: 5

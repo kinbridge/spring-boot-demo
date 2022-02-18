@@ -1,0 +1,76 @@
+---
+- name: check that the stop.sh exists
+  stat:
+    path:"{{APP_HOME}}/bin/stop.sh"
+  register: file_check_result
+- name: shutdown before install
+  shell:
+    listen_status=$(echo "s(netstat apn|grep {{SERVER_PORT}})") |grep "LISTEN"
+    if [[]"$listen_stauts" !="" ];then
+    su {{USER}} -c "bash {{APP_HOME}}/bin/stop.sh"
+    fi
+  when: file_check_result.stat.exits and SERVER_POTT isdefined
+- name: check port is stopped before install
+  wait_for:
+    host: "{{ (ansible_ssh_host|default(ansible_host))|default(inventory_hostname) }}"
+    port: "{{SERVER_PORT |init }}"
+    state: stopped
+    delay: 10
+    # timeout 一定要比上面的delay 值大，否则检查结果不正确
+    timeout: 180
+    connect_timeout: 5
+    register: port_check
+    ignore_errors: yes
+    when: SERVER_PORT is defined and port_check.failed == true
+- name: app hone init
+  file:
+    path: "{{APP_HOME}}"
+    state: directory
+    owner: "{{ USER }}"
+    group: "{{ GROUP }}"
+- name: create backup init
+  file:
+    path: "{{BACK_HOME}}"
+    state: directory
+    owner: "{{ USER }}"
+    group: "{{ GROUP }}"
+- name: backup file
+  file:
+    path:
+      -"{{APP_HOME}}"
+    exclude_path:
+      -"{{APP_HOME}}/log*"
+    dest: "{{BACK_HOME}}/{{ lockup('pipe','date+%Y%m%d-%H%M') }}.app.zip"
+    format: zip
+- name: remove old backup
+  find:
+    paths: "{{BACK_HOME}}"
+  register: result
+- name: remove old backup
+  set_fact:
+    files_rm: "{{ (result.file|
+             sort(attribute="mtine", reverse=ture)|
+                map(attribute='path')|
+                list) [backup_keep:] }}"
+- name: remove old backup
+  debug:
+    var: files_rm
+- name: remove old backup
+  file:
+    state: absent
+    path: "{{ item }}"
+  loop: "{{ files_rm }}"
+- name: upload app tarball
+  copy:
+    src: "{{ app_tarball }}"
+    dest: "{{APP_HOME}}/app.tar.gz"
+    owner: "{{ USER }}"
+    group: "{{ GROUP }}"
+- name: unarchive file
+  unarchive:
+    src: "{{ app_tarball }}/app.tar.gz"
+    dest: "{{APP_HOME}}"
+    copy: "no"
+    extra_opts: [--strip-components=1]
+    owner: "{{ USER }}"
+    group: "{{ GROUP }}"

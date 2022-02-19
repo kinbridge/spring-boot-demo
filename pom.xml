@@ -12,9 +12,7 @@
     <modules>
         <module>dockercompose-springboot-mysql-nginx/app</module>
         <module>spring-boot-actuator</module>
-        <module>spring-boot-admin-simple</module>
         <module>spring-boot-banner</module>
-        <module>spring-boot-admin-client</module>
         <module>spring-boot-commandLineRunner</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-elasticsearch</module>
@@ -46,6 +44,14 @@
         <module>spring-boot-web-thymeleaf</module>
         <module>spring-boot-webflux</module>
     </modules>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

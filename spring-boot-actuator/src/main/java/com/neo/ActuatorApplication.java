@@ -8,5 +8,14 @@ public class ActuatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ActuatorApplication.class, args);
+		in i = 10;
+
+
+
+
+
+
+
+
 	}
 }

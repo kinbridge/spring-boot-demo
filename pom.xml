@@ -43,6 +43,8 @@
         <module>spring-boot-web</module>
         <module>spring-boot-web-thymeleaf</module>
         <module>spring-boot-webflux</module>
+        <module>spring-boot-bridge</module>
+        <module>spring-boot-utils</module>
     </modules>
 
     <repositories>

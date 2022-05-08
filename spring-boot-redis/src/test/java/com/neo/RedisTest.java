@@ -24,6 +24,11 @@ public class RedisTest {
     private RedisTemplate redisTemplate;
 
     @Test
+    public void utilsTest(){
+        System.out.println(redisUtils.get("myStr"));
+    }
+
+    @Test
     public void testSpringRedis() {
         // stringRedisTemplate的操作
         // String读写

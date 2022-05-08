@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.example</groupId>
-    <artifactId>spring-boot-banner</artifactId>
-    <version>2.0.0</version>
-    <packaging>jar</packaging>
+  <groupId>com.example</groupId>
+  <artifactId>spring-boot-bridge</artifactId>
+  <version>2.0.0</version>
 
-    <name>Spring Boot banner</name>
-    <description>A very useful project to demonstrate animated gif support in Spring Boot 2</description>
+  <name>spring-boot-bridge</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -43,5 +44,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
